@@ -10,7 +10,7 @@
 
 ## 1. Summary
 When working on a supervised ML problem, users often come to a point when they need to test and compare several models; find the most optimal parameters for these models (usually via [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV)); retrain the models using the optimal parameters.
-Unfortunately, a combination of [Pipeline and FeatureUnion](https://scikit-learn.org/0.18/modules/pipeline.html) doesn't allow to do grid search for several models and access the optimal parameters. This package addresses the problem and allows to pass models and parameters as dictionaries
+Unfortunately, a combination of [Pipeline and FeatureUnion](https://scikit-learn.org/0.18/modules/pipeline.html) doesn't allow to do grid search for several models and access the optimal parameters in one step. This package addresses the problem and allows to pass models and parameters as dictionaries:
 ```
 models = {'regression': LinearRegression(),\
           'ridge': Ridge(),\
@@ -31,7 +31,7 @@ params = {
            }
 ```
 
-returns the best combinations
+and returns the best combinations of parameters
 ```
 {'learning_rate': 0.05,
  'max_depth': 2,
