@@ -9,7 +9,7 @@
 
 
 ## 1. Summary
-When working on a supervised ML problem, users often come to a point when they need to test and compare several models; find the most optimal parameters for these models (usually via [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV)); retrain the models using the optimal parameters.
+When working on a supervised ML problem, users often come to a point when they need to run and compare several models; find the most optimal parameters for these models (usually via [GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV)); retrain the models using the optimal parameters.
 Unfortunately, a combination of [Pipeline and FeatureUnion](https://scikit-learn.org/0.18/modules/pipeline.html) doesn't allow to do grid search for several models and access the optimal parameters in one step. This package addresses the problem and allows to pass models and parameters as dictionaries:
 ```
 models = {'regression': LinearRegression(),\
@@ -40,3 +40,5 @@ and returns the best combinations of parameters
 ```
 
 and allows to refit the models using the optimal parameters.
+
+Users can select various [scoring parameters](https://scikit-learn.org/stable/modules/model_evaluation.html). The current version that was built for regression purposes supports [Mean Squared Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error), [Explained Variance Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score), [Median Absolute Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error), and [R2 score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score). Later versions of the module will provide additional parameters. 
