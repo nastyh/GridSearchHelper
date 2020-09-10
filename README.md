@@ -48,4 +48,4 @@ Currently it is merely a module. That said, you just need to download _GridSearc
 ```
 from GridSearchHelper import EstimatorSelectionHelper
 ```
-
+It assumes that standard packages (pandas, numPy, scikit-learn) are already installed. 
