@@ -31,7 +31,7 @@ params = {
            }
 ```
 
-and returns the best combinations of parameters
+returns the best combinations of parameters
 ```
 {'learning_rate': 0.05,
  'max_depth': 2,
@@ -51,3 +51,15 @@ from GridSearchHelper import EstimatorSelectionHelper
 It assumes that standard packages (pandas, numPy, scikit-learn) are already installed. 
 
 ## 3. Supported functions and parameters
+
+A class instance should be initialized with two parameters, _models_ and _params_.
+_models_ is a dictionary with an arbitrary key that serves as a name for a given model, and a value that is one of the scikit-learn's [supervised models](https://scikit-learn.org/stable/supervised_learning.html).
+Example:
+```
+models = {'regression': LinearRegression(),\
+             'ridge': Ridge(),\
+             'Stochastic_Descent': SGDRegressor(),\
+             'Decision_Tree': DecisionTreeRegressor(),\
+             'Random_Forest': RandomForestRegressor()}
+```
+
