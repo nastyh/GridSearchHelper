@@ -4,8 +4,8 @@
  ## Table of Content
  1. Summary
  2. Installation
- 3. Available functions
- 4. Use case
+ 3. Supported functions and parameters
+ 4. Traditional and optimized used cases
 
 
 ## 1. Summary
@@ -49,3 +49,5 @@ Currently it is merely a module. That said, you just need to download _GridSearc
 from GridSearchHelper import EstimatorSelectionHelper
 ```
 It assumes that standard packages (pandas, numPy, scikit-learn) are already installed. 
+
+## 3. Supported functions and parameters
