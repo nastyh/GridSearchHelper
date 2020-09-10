@@ -51,6 +51,7 @@ class EstimatorSelectionHelper:
         self.keys = models.keys()
         self.grid_searches = {}
         self.best_params = defaultdict(list)
+        self.best_errors = {}
     
 
     def fit(self, X, y, **grid_kwargs):
@@ -86,15 +87,15 @@ class EstimatorSelectionHelper:
                      'explained_variance': explained_variance_score,\
                       'neg_median_absolute_error': median_absolute_error,\
                       'R2': r2_score}
-        d_errors = {}
+        # d_errors = {}
         for key in self.keys:
             print(f'Fitting model {key} with its best parameters')
             curr_model = self.grid_searches[key].best_estimator_
             curr_model.fit(X_train, y_train)
-            d_errors[key] = d_metrics[metric](y_test, curr_model.predict(X_test))
+            self.best_errors[key] = d_metrics[metric](y_test, curr_model.predict(X_test))
         for k, v in enumerate(self.models):
-            print(f'{metric} of the model {v} with the best parameters is {d_errors.get(v, -1):.2f}')
-        return d_errors
+            print(f'{metric} of the model {v} with the best parameters is {self.best_errors.get(v, -1):.2f}')
+        return self.best_errors
 
 
     def FeatureImportanceAllocator(self, X_train, y_train, X_test, y_test, data, **gradient_kwargs):
