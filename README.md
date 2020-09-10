@@ -54,6 +54,7 @@ It assumes that standard packages (pandas, numPy, scikit-learn) are already inst
 
 A class instance should be initialized with two parameters, _models_ and _params_.
 _models_ is a dictionary with an arbitrary key that serves as a name for a given model, and a value that is one of the scikit-learn's [supervised models](https://scikit-learn.org/stable/supervised_learning.html).
+
 Example:
 ```
 models = {'regression': LinearRegression(),\
@@ -63,3 +64,17 @@ models = {'regression': LinearRegression(),\
              'Random_Forest': RandomForestRegressor()}
 ```
 
+_params_ is another dictionary for models' parameters which users want to test.
+
+Its format is a little bit more complex:
+{'name of the model': list of dictionaries with parameters and their values}
+
+Example:
+```
+params = {'regression': {},\
+             'ridge': [{'alpha': [0.01, 0.05, 0.1, 0.3, 0.6]}],\
+             'Stochastic_Descent': [{'penalty': ['l1', 'l2', 'elasticnet'], 'alpha': [0.00005, 0.0001, 0.0003, 0.0006, 0.001]}],\
+             'Decision_Tree': [{'min_samples_split': [2, 3, 4, 5], 'min_samples_leaf': [1, 2, 3], 'max_features': ['auto', 'sqrt', 'log2']}],\
+             'Random_Forest': [{'n_estimators': [100, 150, 200, 250], 'min_samples_split': [2, 3, 4, 5], 'min_samples_leaf': [1, 2, 3], 'max_features': ['auto', 'sqrt', 'log2']}]}
+ ```
+ 
