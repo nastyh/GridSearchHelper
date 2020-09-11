@@ -1,5 +1,5 @@
 # GridSearchHelper
- Class that allows to run GridSearch for several models at a time.
+ Class that allows to run [GridSearchCV()](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html#sklearn.model_selection.GridSearchCV) for several models at a time. It reduces the amount of manual work involved and requires to pass models and parameters only once.
  
  ## Table of Content
  1. Summary
@@ -41,7 +41,7 @@ returns the best combinations of parameters
 
 and allows to refit the models using the optimal parameters.
 
-Users can select various [scoring parameters](https://scikit-learn.org/stable/modules/model_evaluation.html). The current version that was built for regression purposes supports [Mean Squared Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error), [Explained Variance Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score), [Median Absolute Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error), and [R2 score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score). Later versions of the module will provide additional parameters. 
+Users can select various [scoring parameters](https://scikit-learn.org/stable/modules/model_evaluation.html) that are used when a model is trained with optimal parameters. The current version that was built for regression purposes supports [Mean Squared Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error), [Explained Variance Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score), [Median Absolute Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error), and [R2 score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score). Later versions of the module will provide additional parameters. 
 
 ## 2. Installation
 Currently it is merely a module. That said, you just need to download _GridSearchHelper.py_, put it to the same folder as your main .py/.ipynb files is stored, and import:
@@ -83,4 +83,5 @@ params = {'regression': {},\
 [that are accepted by GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV). 
 Some kwargs that you might want to pass:
 1. Scoring. A string or a scorer callable object / function with signature scorer(estimator, X, y). If None, the score method of the estimator is used. [Scoring functions that are supported by scikit learn](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter) can be passed.
+2. cv. Determines the cross-validation splitting strategy. Possible inputs for cv are: None (will use a 5-fold cross validation), integer, to specify the number of folds in a (Stratified)KFold, [CV splitter](https://scikit-learn.org/stable/glossary.html#term-cv-splitter), an iterable yielding (train, test) splits as arrays of indices
  
