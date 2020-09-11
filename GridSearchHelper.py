@@ -5,8 +5,8 @@ import pandas as pd
 # import matplotlib.pyplot as plt
 # import scipy.stats as st
 # from scipy.stats import norm
-# import seaborn as sns
-import datetime
+import seaborn as sns
+# import datetime
 # import pandas_profiling
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, power_transform
@@ -17,10 +17,8 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.metrics import mean_squared_error, r2_score, explained_variance_score, median_absolute_error
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.model_selection import GridSearchCV
-# from sklearn.pipeline import Pipeline, FeatureUnion
-from sklearn.model_selection import KFold, StratifiedKFold
-
-from sklearn.model_selection import GridSearchCV
+from sklearn.pipeline import Pipeline, FeatureUnion
+# from sklearn.model_selection import KFold, StratifiedKFold
 
 class EstimatorSelectionHelper:
     """
@@ -51,7 +49,12 @@ class EstimatorSelectionHelper:
         self.keys = models.keys()
         self.grid_searches = {}
         self.best_params = defaultdict(list)
+<<<<<<< Updated upstream
+=======
         self.best_errors = {}
+
+        assert len(self.models) == len(self.params), 'Lengths of dictionaries with models and their parameters should be of the same length'
+>>>>>>> Stashed changes
     
 
     def fit(self, X, y, **grid_kwargs):
@@ -61,6 +64,10 @@ class EstimatorSelectionHelper:
         X, y: numpy arrays, training sets
         **grid_kwargs: kwargs for GridSearchCV (https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html)
         """
+        assert isinstance(X, np.ndarray), 'X should be a numpy array'
+        assert isinstance(y, np.ndarray), 'y should be a numpy array'
+        assert X.shape[0] == y.shape[0], 'X and y should be of the same length'
+
         for key in self.keys:
             print(f'Running GridSearchCV for {key}')
             model = self.models[key]
@@ -87,15 +94,15 @@ class EstimatorSelectionHelper:
                      'explained_variance': explained_variance_score,\
                       'neg_median_absolute_error': median_absolute_error,\
                       'R2': r2_score}
-        # d_errors = {}
+        d_errors = {}
         for key in self.keys:
             print(f'Fitting model {key} with its best parameters')
             curr_model = self.grid_searches[key].best_estimator_
             curr_model.fit(X_train, y_train)
-            self.best_errors[key] = d_metrics[metric](y_test, curr_model.predict(X_test))
+            d_errors[key] = d_metrics[metric](y_test, curr_model.predict(X_test))
         for k, v in enumerate(self.models):
-            print(f'{metric} of the model {v} with the best parameters is {self.best_errors.get(v, -1):.2f}')
-        return self.best_errors
+            print(f'{metric} of the model {v} with the best parameters is {d_errors.get(v, -1):.2f}')
+        return d_errors
 
 
     def FeatureImportanceAllocator(self, X_train, y_train, X_test, y_test, data, **gradient_kwargs):
