@@ -102,4 +102,14 @@ Currently, _metric_ supports:
 * [Median Absolute Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error)
 * [R2 Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score)
 
-It returns a dictionary with keys being models' names and values that are calculated using the provided _metric_. 
+It returns a dictionary with keys being models' names and values that are calculated using the provided _metric_:
+```
+{'regression': 3006.0733911079724,
+ 'ridge': 3019.4609723576123,
+ 'Stochastic_Descent': 3958.7643420367217,
+ 'Decision_Tree': 6553.937887887888,
+ 'Random_Forest': 3875.6286939592223}
+ ```
+ 
+## Traditional and optimized used cases
+The best way to see how the class helps to save time and to avoid typos is to compare two workbooks: [one that shows a traditional manual approach](https://github.com/nastyh/GridSearchHelper/blob/master/manual_way.ipynb) and [another that uses this class](https://github.com/nastyh/GridSearchHelper/blob/master/GridSearchHelper_way.ipynb). 
