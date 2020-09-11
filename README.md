@@ -101,3 +101,5 @@ Currently, _metric_ supports:
 * [Explained Variance](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score)
 * [Median Absolute Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error)
 * [R2 Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score)
+
+It returns a dictionary with keys being models' names and values that are calculated using the provided _metric_. 
