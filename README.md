@@ -77,4 +77,10 @@ params = {'regression': {},\
              'Decision_Tree': [{'min_samples_split': [2, 3, 4, 5], 'min_samples_leaf': [1, 2, 3], 'max_features': ['auto', 'sqrt', 'log2']}],\
              'Random_Forest': [{'n_estimators': [100, 150, 200, 250], 'min_samples_split': [2, 3, 4, 5], 'min_samples_leaf': [1, 2, 3], 'max_features': ['auto', 'sqrt', 'log2']}]}
  ```
+ If you don't test any parameters (like in a Regression example above), you still need to pass an empty dictionary. In all other cases, you pass a list and put dictionaries inside the list (all other models in the code snippet above).
+ 
+ Once you have an instance, you can run a .fit() method. It requires _X_train_ and _y_train_ to train your models on, and also accepts _**kwargs_ 
+[that are accepted by GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV). 
+Some kwargs that you might want to pass:
+1. Scoring. A string or a scorer callable object / function with signature scorer(estimator, X, y). If None, the score method of the estimator is used. [Scoring functions that are supported by scikit learn](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter) can be passed.
  
