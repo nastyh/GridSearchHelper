@@ -52,7 +52,7 @@ It assumes that standard packages (pandas, numPy, scikit-learn) are already inst
 
 ## 3. Supported functions and parameters
 
-### Initialization
+### 3.1 Initialization
 A class instance should be initialized with two parameters, _models_ and _params_.
 _models_ is a dictionary with an arbitrary key that serves as a name for a given model, and a value that is one of the scikit-learn's [supervised models](https://scikit-learn.org/stable/supervised_learning.html).
 
@@ -80,7 +80,7 @@ params = {'regression': {},\
  ```
  If you don't test any parameters (like in a Regression example above), you still need to pass an empty dictionary. In all other cases, you pass a list and put dictionaries inside the list (all other models in the code snippet above).
  
- ### fit() method
+ ### 3.2 fit() method
  Once you have an instance, you can run a .fit() method. It requires _X_train_ and _y_train_ to train your models on, and also accepts _**kwargs_ 
 [that are supported by GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV). 
 Some kwargs that you might want to pass:
@@ -93,5 +93,5 @@ After fitting, a dictionary _best_params_ is returned and can also be accessed v
 <your_class_instance>.best_params
 ```
 
-### fit_with_best() method
+### 3.3 fit_with_best() method
 You can retrain your models with the best parameters by calling _fit_with_best()_.
