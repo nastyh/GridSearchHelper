@@ -111,5 +111,5 @@ It returns a dictionary with keys being models' names and values that are calcul
  'Random_Forest': 3875.6286939592223}
  ```
  
-## Traditional and optimized used cases
+## 4. Traditional and optimized used cases
 The best way to see how the class helps to save time and to avoid typos is to compare two workbooks: [one that shows a traditional manual approach](https://github.com/nastyh/GridSearchHelper/blob/master/manual_way.ipynb) and [another that uses this class](https://github.com/nastyh/GridSearchHelper/blob/master/GridSearchHelper_way.ipynb). 
