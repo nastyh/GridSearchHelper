@@ -49,12 +49,9 @@ class EstimatorSelectionHelper:
         self.keys = models.keys()
         self.grid_searches = {}
         self.best_params = defaultdict(list)
-<<<<<<< Updated upstream
-=======
         self.best_errors = {}
 
         assert len(self.models) == len(self.params), 'Lengths of dictionaries with models and their parameters should be of the same length'
->>>>>>> Stashed changes
     
 
     def fit(self, X, y, **grid_kwargs):
@@ -90,19 +87,23 @@ class EstimatorSelectionHelper:
         X_train, y_train, X_test, y_test: numpy arrays 
         metric: metrics for model evaluation. Supported now: mean squared error (default), explained variance, median absolute error, R2 score
         """
+
+        assert X_train.shape[0] == y_train.shape[0], 'Lengths of X_train and y_train should be the same'
+        assert X_test.shape[0] == y_test.shape[0], 'Lengths of X_test and y_test should be the same'
+
         d_metrics = {'neg_root_mean_squared_error': mean_squared_error,\
                      'explained_variance': explained_variance_score,\
                       'neg_median_absolute_error': median_absolute_error,\
                       'R2': r2_score}
-        d_errors = {}
+        # d_errors = {}
         for key in self.keys:
             print(f'Fitting model {key} with its best parameters')
             curr_model = self.grid_searches[key].best_estimator_
             curr_model.fit(X_train, y_train)
-            d_errors[key] = d_metrics[metric](y_test, curr_model.predict(X_test))
+            self.best_errors[key] = d_metrics[metric](y_test, curr_model.predict(X_test))
         for k, v in enumerate(self.models):
-            print(f'{metric} of the model {v} with the best parameters is {d_errors.get(v, -1):.2f}')
-        return d_errors
+            print(f'{metric} of the model {v} with the best parameters is {self.best_errors.get(v, -1):.2f}')
+        return self.best_errors
 
 
     def FeatureImportanceAllocator(self, X_train, y_train, X_test, y_test, data, **gradient_kwargs):
