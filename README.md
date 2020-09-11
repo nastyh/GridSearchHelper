@@ -95,3 +95,9 @@ After fitting, a dictionary _best_params_ is returned and can also be accessed v
 
 ### 3.3 fit_with_best() method
 You can retrain your models with the best parameters by calling _fit_with_best()_.
+It requires _X_train, y_train, X_test, y_test_ (numpy arrays) and an optional parameter _metric_ that is used to report the performance on the provided test set. 
+Currently, _metric_ supports:
+* [Mean Squared Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error)
+* [Explained Variance](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score)
+* [Median Absolute Error](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error)
+* [R2 Score](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score)
