@@ -80,8 +80,15 @@ params = {'regression': {},\
  If you don't test any parameters (like in a Regression example above), you still need to pass an empty dictionary. In all other cases, you pass a list and put dictionaries inside the list (all other models in the code snippet above).
  
  Once you have an instance, you can run a .fit() method. It requires _X_train_ and _y_train_ to train your models on, and also accepts _**kwargs_ 
-[that are accepted by GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV). 
+[that are supported by GridSearchCV](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html?highlight=gridsearchcv#sklearn.model_selection.GridSearchCV). 
 Some kwargs that you might want to pass:
-1. Scoring. A string or a scorer callable object / function with signature scorer(estimator, X, y). If None, the score method of the estimator is used. [Scoring functions that are supported by scikit learn](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter) can be passed.
-2. cv. Determines the cross-validation splitting strategy. Possible inputs for cv are: None (will use a 5-fold cross validation), integer, to specify the number of folds in a (Stratified)KFold, [CV splitter](https://scikit-learn.org/stable/glossary.html#term-cv-splitter), an iterable yielding (train, test) splits as arrays of indices
+1. **Scoring.** A string or a scorer callable object / function with signature scorer(estimator, X, y). If None, the score method of the estimator is used. [Scoring functions that are supported by scikit learn](https://scikit-learn.org/stable/modules/model_evaluation.html#scoring-parameter) can be passed.
+2. **cv.** Determines the cross-validation splitting strategy. Possible inputs for cv are: None (will use a 5-fold cross validation), integer, to specify the number of folds in a (Stratified)KFold, [CV splitter](https://scikit-learn.org/stable/glossary.html#term-cv-splitter), an iterable yielding (train, test) splits as arrays of indices
+3. **return_train_score**: bool, default=False. Computing training scores is used to get insights on how different parameter settings impact the overfitting/underfitting trade-off. However computing the scores on the training set can be computationally expensive and is not strictly required to select the parameters that yield the best generalization performance.
  
+After fitting, a dictionary _best_params_ is returned and can also be accessed via 
+```
+<your_class_instance>.best_params
+```
+
+You can retrain your models with the best parameters by calling _fit_with_best()_.
